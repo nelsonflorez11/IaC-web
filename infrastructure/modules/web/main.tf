@@ -132,8 +132,14 @@ resource "aws_autoscaling_group" "web" {
       override {
         instance_type     = "t2.medium"        
       }
+
     }
   }
+      
+  lifecycle {
+      ignore_changes = [load_balancers, target_group_arns]
+  }
+  
 }
 
 resource "aws_alb" "lb-web" {
@@ -153,7 +159,7 @@ resource "aws_lb_target_group" "web" {
   port     = 80
   protocol = "HTTP"
   
-  vpc_id   = "vpc-c34fafa5"  
+  vpc_id   = var.vpc
 }
 
 resource "aws_autoscaling_attachment" "web" {

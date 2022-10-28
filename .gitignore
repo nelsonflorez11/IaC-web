@@ -1,4 +1,5 @@
 *terraform*
-/infrastructure/web/variables.tf
-/infrastructure/provider.tf
+*variables.*
+*provider.*
+*.tfvars
 
